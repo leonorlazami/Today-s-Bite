@@ -1,25 +1,36 @@
-import { Button } from "../../components/buttons/button";
-import { Link } from "react-router-dom";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { Header } from "../../components/header/header";
+import { Poll } from "../../components/poll/poll";
+export type MockDataItem = {
+  place: string;
+  votes: number;
+};
+
+export const mockData: MockDataItem[] = [
+  {
+    place: "Pizza",
+    votes: 0,
+  },
+  {
+    place: "AJDINI",
+    votes: 4,
+  },
+  {
+    place: "AJDINI",
+    votes: 4,
+  },
+  {
+    place: "AJDINI",
+    votes: 4,
+  },
+];
 
 export const Home = () => {
-  const { userName } = useAuthContext();
-
   return (
-    <div>
-      {userName ? (
-        <h2>Welcome {userName} 👋</h2>
-      ) : (
-        <>
-          <p>You are not logged in.</p>
-          <Link to="/signup">
-            <Button label="Signup" />
-          </Link>
-          <Link to="/login">
-            <Button label="Login" />
-          </Link>
-        </>
-      )}
+    <div className="flex flex-col mt-4 items-center p-4">
+      <main className="border">
+        <Header />
+        <Poll mockData={mockData} />
+      </main>
     </div>
   );
 };

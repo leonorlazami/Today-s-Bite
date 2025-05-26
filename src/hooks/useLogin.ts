@@ -1,15 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
-import {
-  handleSignup,
-  type SignUpStateTypes,
-} from "../pages/Signup/signup.utils";
+import { handleLogin, type LoginStateType } from "../pages/Login/login.utils";
 import { auth } from "../lib/firebase/firebase";
 import type { AuthHookParams } from "../utils";
 
-export const useSignUp = ({ navigate, setUserData }: AuthHookParams) =>
+export const useLogin = ({ navigate, setUserData }: AuthHookParams) =>
   useMutation({
-    mutationFn: async (user: SignUpStateTypes) => {
-      const firebaseUser = await handleSignup(auth, user);
+    mutationFn: async (user: LoginStateType) => {
+      const firebaseUser = await handleLogin(auth, user);
       return firebaseUser;
     },
     onSuccess: (user) => {
@@ -19,8 +16,7 @@ export const useSignUp = ({ navigate, setUserData }: AuthHookParams) =>
       }
       navigate("/");
     },
-
     onError: (err) => {
-      console.error("Signup error:", err);
+      console.error("Login error:", err);
     },
   });

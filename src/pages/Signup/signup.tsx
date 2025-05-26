@@ -1,45 +1,50 @@
 import { useState } from "react";
 import { Button } from "../../components/buttons/button";
-import { auth } from "../../lib/firebase/firebase";
-import {
-  DEFAULT_SIGNUP_STATE,
-  handleSignup,
-  handleSignupFieldChange,
-} from "./signup.utils";
+import { DEFAULT_SIGNUP_STATE, handleSignupClick } from "./signup.utils";
+import { useSignUp } from "../../hooks/useSignup";
+import { useNavigate } from "react-router-dom";
+import { Input } from "../../components/input/input";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { handleInputChange } from "../../utils";
 export const Signup = () => {
-  const [user, setUser] = useState(DEFAULT_SIGNUP_STATE);
-  const handleChange = handleSignupFieldChange(setUser);
-
-  const onSignupClick = async () => {
-    try {
-      await handleSignup(auth, user);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [signUpUserData, setSignUpUserData] = useState(DEFAULT_SIGNUP_STATE);
+  const handleChange = handleInputChange(setSignUpUserData);
+  const navigate = useNavigate();
+  const { setUserData } = useAuthContext();
+  const { mutate: signup } = useSignUp({
+    navigate,
+    setUserData,
+  });
+  const { signupEmail, signupName, singupPassword } = signUpUserData;
 
   return (
     <fieldset>
-      <label htmlFor="name">Name</label>
-      <input type="text" id="name" value={user.name} onChange={handleChange} />
-
-      <label htmlFor="email">Email</label>
-      <input
+      <legend>Sign up</legend>
+      <Input
+        label="Name"
+        name="signupName"
+        onChange={handleChange}
+        value={signupName}
+        type="text"
+      />
+      <Input
+        name="signupEmail"
+        label="Email"
+        onChange={handleChange}
+        value={signupEmail}
         type="email"
-        id="email"
-        value={user.email}
-        onChange={handleChange}
       />
-
-      <label htmlFor="password">Password</label>
-      <input
+      <Input
+        name="singupPassword"
+        label="Password"
+        onChange={handleChange}
+        value={singupPassword}
         type="password"
-        id="password"
-        value={user.password}
-        onChange={handleChange}
       />
-
-      <Button label="Sign Up" onClickHandler={onSignupClick} />
+      <Button
+        label="Sign Up"
+        onClickHandler={() => handleSignupClick(signUpUserData, signup)}
+      />
     </fieldset>
   );
 };
