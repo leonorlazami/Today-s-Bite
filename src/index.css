@@ -1,1 +1,41 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --color-primary: #272727;
+  --color-secondary: #696773;
+  --color-accent-primary: #fe8266;
+  --color-accent-secondary: #009fb7;
+  --color-background: #ffffff;
+
+  --font-primary: "Golos Text", sans-serif;
+}
+
+@layer utilities {
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+  .bg-accent-primary {
+    background-color: var(--color-accent-primary);
+  }
+  .bg-accent-secondary {
+    background-color: var(--color-accent-secondary);
+  }
+  .bg-background {
+    background-color: var(--color-background);
+  }
+
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-accent-primary {
+    color: var(--color-accent-primary);
+  }
+
+  .font-primary {
+    font-family: var(--font-primary);
+  }
+}

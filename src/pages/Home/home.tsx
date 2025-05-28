@@ -5,31 +5,12 @@ export type MockDataItem = {
   votes: number;
 };
 
-export const mockData: MockDataItem[] = [
-  {
-    place: "Pizza",
-    votes: 0,
-  },
-  {
-    place: "AJDINI",
-    votes: 4,
-  },
-  {
-    place: "AJDINI",
-    votes: 4,
-  },
-  {
-    place: "AJDINI",
-    votes: 4,
-  },
-];
-
 export const Home = () => {
   return (
-    <div className="flex flex-col mt-4 items-center p-4">
-      <main className="border">
+    <div className="flex flex-col pt-4 items-center text-lg bg-background   h-screen rounded-lg">
+      <main className="flex flex-col gap-4 font-primary border-gray-300 border rounded-lg py-4 px-3">
         <Header />
-        <Poll mockData={mockData} />
+        <Poll />
       </main>
     </div>
   );

@@ -5,9 +5,11 @@ export const Header = () => {
   const user = `${userData ? userData.displayName : "Guest"}`;
 
   return (
-    <div>
-      <h1>Today's Bite</h1>
-      <p>Where should we eat today, {user}? </p>
+    <div className="p-2">
+      <h1 className="font-bold text-2xl">Today's Bite</h1>
+      <p className="text-gray-400 text-sm">
+        Where should we eat today, {user}?{" "}
+      </p>
     </div>
   );
 };

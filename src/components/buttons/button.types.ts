@@ -4,5 +4,11 @@ export type ButtonProps = {
   label: string;
   name: string;
   type?: "button" | "submit" | "reset";
+  id?: string;
   onClickHandler?: MouseEventHandler<HTMLButtonElement>;
-} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "onClick">;
+  className?: string;
+  disabled?: boolean;
+} & Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "type" | "onClick" | "id" | "disabled"
+>;
