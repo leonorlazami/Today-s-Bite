@@ -5,9 +5,19 @@ export const Button = ({
   onClickHandler,
   name,
   type = "button",
+  className = "",
+  id,
+  disabled,
 }: ButtonProps) => {
   return (
-    <button onClick={onClickHandler} name={name} type={type}>
+    <button
+      disabled={disabled}
+      id={id}
+      onClick={onClickHandler}
+      name={name}
+      type={type}
+      className={`${className} text-sm border border-gray-300  rounded-lg disabled:text-gray-400 disabled:cursor-not-allowed disabled:opacity-70`}
+    >
       {label}
     </button>
   );
